@@ -1,1 +1,23 @@
-<p>home works!</p>
+<div class="row">
+    <div class="col">
+        <div class="alert alert-secondary" role="alert" [hidden]="!message">{{ message }}</div>
+        <div class="card-columns">
+            <div class="card" *ngFor="let product of products; let i = index;">
+                <a [routerLink]="['/edit', product.id]" [queryParams]="product"><img class="card-img-top" src="https://picsum.photos/id/{{i + 40}}/400/300"></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a [routerLink]="['/edit', product.id]" [queryParams]="product">{{product.title}}</a>
+                    </h4>
+                    <p class="card-text">{{product.description}}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="text-warning">{{product.price | currency}}</span>
+                    <div class="float-right">
+                        <a [routerLink]="['/edit', product.id]" [queryParams]="product">Edit</a>&nbsp;
+                        <a href="javascript:void(0);" (click)="onDeleteClick($event, product)">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

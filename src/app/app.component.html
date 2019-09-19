@@ -1,7 +1,22 @@
-<h1>Firbase App</h1>
-<ul>
-	<li><a [routerLink]="['/home']">Home</a></li>
-	<li><a [routerLink]="['/about']">About</a></li>
-	<li><a [routerLink]="['/contact']">Contact</a></li>
-</ul>
-<router-outlet></router-outlet>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="pt-5 text-center">
+                <img class="icon-firebase"
+                    src="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_28dp.png" alt="">
+                <div class="display-3">Fire Store</div>
+            </div>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="'active'">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/edit', 0]" [routerLinkActive]="'active'">Add</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 mb-5">
+    <router-outlet></router-outlet>
+</div>

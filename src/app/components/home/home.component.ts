@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
+
+declare var window: any;
 
 @Component({
     selector: 'app-home',
@@ -9,17 +11,22 @@ import { Product } from 'src/app/models/product';
 })
 export class HomeComponent implements OnInit {
 
-    items: Product[] = [];
+    products: Product[] = [];
+    message: string = '';
 
-    constructor(public firebaseService: FirebaseService) { }
+    constructor(public productService: ProductService) { }
 
     ngOnInit() {
-        this.firebaseService.get().subscribe(result => {
-            result.forEach(element => {
-                console.log(element.payload.doc.data());                
-                console.log(element.payload.doc.id);                
-            });
+        this.productService.getAll().subscribe(products => {
+            this.products = products;
         });
+    }
+
+    onDeleteClick($event: any, product: Product) {
+        this.productService.delete(product);
+        window.scrollTo(0, 0);
+        this.message = '💩 Product deleted';
+        setTimeout(() => this.message = '', 2000);
     }
 
 }
