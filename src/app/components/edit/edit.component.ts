@@ -30,6 +30,8 @@ export class EditComponent implements OnInit {
         let id = this.route.snapshot.params.id || '0';
         if (id != '0') {
             this.product = <Product>this.route.snapshot.queryParams;        
+        } else {
+            this.product.id = id;
         }
         this.initForm();
     }
